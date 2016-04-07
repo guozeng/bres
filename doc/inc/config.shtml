@@ -1,0 +1,15 @@
+<script>
+
+/*文档配置文件*/
+var debug = true;  // 文档默认开启调试模式
+var compounts = [];
+compounts.push({author: '郭增', date: '2016-03-07', desc: 'ajax分页模块', filename: 'ajaxpage'});
+compounts.push({author: '郭增', date: '2016-03-07', desc: '对话框组件', filename: 'dialog'});
+compounts.push({author: '郭增', date: '2016-03-14', desc: '图片滚动模块', filename: 'imgScrollor'});
+compounts.push({author: '郭增', date: '2016-03-25', desc: '专题公用脚本', filename: 'special'});
+
+compounts.push({author: '郭增', date: '2016-03-15', desc: '如何开发bres模块', filename: 'HowToProgram'});
+// test
+compounts.push({author: '郭增', date: '2016-03-21', desc: '做一些小测试', filename: 'testpage'});
+
+</script>

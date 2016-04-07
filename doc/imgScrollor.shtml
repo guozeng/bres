@@ -1,0 +1,123 @@
+<!--#include virtual="/g/doc/inc/top.shtml"-->
+
+<h1 class="page-header">图片滚动模块</h1>
+<p class="lead">实例展示：基本应用</p>
+<div id="container"></div>
+<p class="mt10">实例代码:</p>
+<pre class="brush: js">
+var ImgScrollor = require('ImgScrollor');
+// 指定容器ID和图片列表，创建图片滚动
+new ImgScrollor('container', [
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'}
+]);
+</pre>
+<p class="lead">实例展示：banner图片滚动</p>
+<div id="container2" class="mt30"></div>
+<p class="mt10">实例代码:</p>
+<pre class="brush: js">
+var ImgScrollor = require('ImgScrollor');
+// 指定容器ID和详细配置，创建图片滚动
+var imgScrollor2 = new ImgScrollor('container2', {
+    displayImgNumber: 1, 
+    imgList: [
+        {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+        {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+        {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+        {imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'}
+    ],
+    imgWidth: 800,
+    imgHeight: 400,
+    scrollIndex: true,
+    onClickImg: function (id) {
+        alert(id);
+    }
+});
+</pre>
+<p class="lead">详细配置参数说明：</p>
+<p><code>ImgScrollor</code>构造函数接收2个参数，第一个参数是容器id，第二个参数有2种情况，如果是数组，表示直接传的图片列表，其他配置采取默认配置，如果是对象，表示需要自定义配置，此时配置中的<code>imgList</code>属性表示图片列表。全部配置说明如下：</p>
+<pre class="brush: js">
+{
+imgScrollorId: '',  // 生成的滚动模块dom id
+imgWidth: 235,        // 图片宽度，默认 235
+imgHeight: 155,       // 图片高度，默认155
+imgMargin: 10, // 图片间距，默认10
+wrapPadding: 30,   // 最外层容器padding， 一般不设置，默认30
+displayImgNumber: 4,   // 图片显示数量，默认4
+animateTime: 500, // 滚动时间 默认500
+
+autoScroll: true,  // 是否自动滚动 默认true
+interval: 3000,    // 滚动时间间隔 默认3000
+scrollIndex: false,  // 页数呈现 默认false
+prevNext: true,     // 是否显示上一页下一页 默认true
+prevNextClassName: null,  // 上一页下页按钮样式类
+target: '_blank',  // 图片链接是否新窗口打开链接
+imgList: null,      // 图片列表 [{imgUrl: '', href: ''}, ...]
+onClickImg: null    // 点击图片回调函数，默认传人图片的序号
+}
+</pre>
+
+<p class="lead">html的方式定义图片列表</p>
+
+<div id="htmlcontainer">
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg" width="200"  height="160"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+    <a href="http://www.baidu.com"><img src="/g/module-images/imgScrollor/default.jpg"></a>
+</div>
+
+<!--#include virtual="/g/doc/inc/bom.shtml"-->
+<script>
+  seajs.use('ImgScrollor', function (m) {
+  	var ImgScrollor = m;
+    var imgScrollor = new ImgScrollor('container', [
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    	{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'}
+    ]);
+    var imgScrollor2 = new ImgScrollor('container2', {
+    	displayImgNumber: 1,
+    	imgList: [
+    		{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    		{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    		{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'},
+    		{imgUrl: '/g/module-images/imgScrollor/default.jpg', href: 'javascript:;'}
+    	],
+    	imgWidth: 800,
+    	imgHeight: 400,
+    	scrollIndex: true,
+    	onClickImg: function (id) {
+    		alert(id);
+    	}
+    });
+    var imgs3 = new ImgScrollor('htmlcontainer');
+  });
+</script>

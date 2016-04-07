@@ -1,0 +1,38 @@
+<!--#include virtual="/g/doc/inc/top.shtml"-->
+<h1 class="page-header">如何开发bres模块</h1>
+<h2>1.本地安装</h2>
+<p>在<code>E:work/</code>目录中新建bres文件夹，然后checkout，svn地址：<code>http://svn.csc86.com/svn/bres/trunk</code>。</p>
+<p>bres仍然使用<code>res.csc86.com</code>访问，所以需要在res目录中新建<code>g ===&gt; bres</code>的软链接，打开cmd输入如下命令：</p>
+<p><code>mklink /d e:\work\res\g e:\work\bres</code></p>
+<p>软链接建立之后，就可以通过<code>//res.csc86.com/g/**</code>请求bres包中的模块和访问bres包中的文档了。</p>
+<p>包下载后，打开cmd cd到根目录，执行<code>npm install</code>下载安装grunt依赖模块。</p>
+<p>下载后的<code>node-modules</code>目录添加到svn ignore list当中。</p>
+<p class="lead">bres包目录说明：</p>
+<p><img src="images/folder.jpg"></p>
+
+<h2>2.开发模块</h2>
+<ul>
+	<li>在<code>dev-modules</code>目录下新建文件夹，文件夹名称为模块名。</li>
+	<li>新建<code>main.js</code>作为模块的入口文件，编写<code>seajs</code>模块。</li>
+	<li>模块开发，推崇<code>tmodjs</code>作为模版引擎，将模块需要的<code>html css</code>一起编译成<code>cmd</code>模块后，在入口文件中引用。</li>
+	<li>使用<code>grunt</code>合并和压缩模块。打开根目录<code>Gruntfile.js</code>，添加<code>createTarget('模块名');</code>，表示增加一个<code>grunt</code>任务。</li>
+	<li>打开cmd，cd到bres根目录，执行命令<code>grunt build:模块名</code>压缩合并模块到<code>sea-modules</code>目录中。</li>
+	<li>在<code>rootConfig.js</code>中添加模块别名。</li>
+	<li>调试模式：在url后添加<code>?cscdev</code>即表示是调试模式，具体实现方式查看<code>rootConfig.js</code>。</li>
+</ul>
+
+<h2>3.编写文档</h2>
+<p>url <code>//res.csc86.com/g/doc</code>是模块文档网站。bres中开发每个模块，都需要编写其文档，方便他人调用，同时也是对自己模块的测试过程。</p>
+<p>正常访问<code>//res.csc86.com/g/doc</code>需要开启<code>nginx ssi</code>功能，打开<code>D:\wnnp\bin\nginx\conf\nginx.conf</code>文件，在<code>http</code>配置项中添加以下配置：</p>
+<pre class="brush: xml">
+ssi on;
+ssi_silent_errors on;
+ssi_types text/shtml;
+</pre>
+<p>在doc文件夹中，每一个<code>sthml</code>对应一个模块，新增一个<code>shtml</code>之后，需要在<code>inc/config.shtml</code>添加到导航数组中，即复制一行</p>
+<pre class="brush: js">
+compounts.push({author: '郭增', date: '2016-03-15', desc: '关于bres', filename: 'about'});
+</pre>
+<p>然后修改对应字段为自己模块，author：模块作者，date： 模块开发时间，desc： 模块简短描述，filename：模块文档文件名，即你所建的<code>shtml</code>。</p>
+
+<!--#include virtual="/g/doc/inc/bom.shtml"-->

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body>
+	<div>
+	<script type="text/javascript" src="//hm.baidu.com/h.js?1ca882b11674aaba9ef7fd1c3adafa89"></script>
+	<script type="text/javascript" src="//w.cnzz.com/q_stat.php?id=1256830811"></script>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	/*seajs.use('../dev-modules/utils/ComponentBaseClass', function (ComponentBaseClass) {
+		var TextCount = ComponentBaseClass.extend({
+	      //事件直接在这里注册，会代理到parentNode节点，parentNode节点在下面指定
+	      EVENTS:{
+	        //选择器字符串，支持所有jQuery风格的选择器
+	        'input':{
+	          //注册keyup事件
+	          keyup:function(self,e){
+	            //单向绑定，修改数据直接更新对应模板
+	            var num = self._getNum();
+	            self.setChuckdata('count',num);
+	            self.fire('Text.input', num);
+	          }
+	        }
+	      },
+	      //指定当前组件的模板
+	      template:'<span id="J_input_count"><%= count %>个字</span>',
+	      //私有方法
+	      _getNum:function(){
+	        return this.get('input').val().length || 0
+	      },
+	      //覆盖实现setUp方法，所有逻辑写在这里。最后可以使用render来决定需不需要渲染模板
+	      //模板渲染后会append到parentNode节点下面，如果未指定，会append到document.body
+	      setUp:function(){
+	        var self = this;
+
+	        var input = this.get('parentNode').find('#J_input')
+	        self.set('input',input)
+
+	        var num = this._getNum()
+	        //赋值数据，渲染模板，选用。有的组件没有对应的模板就可以不调用这步。
+	        self.render({
+	          count:num
+	        })
+
+	      }
+	    });
+	    var tc = new TextCount({
+	        parentNode:$("#J_test_container")
+	      });
+	      tc.on('Text.input', function (num) {
+	        if (num > 5) {
+	          alert('must 5');
+	        }
+	      });
+	});*/
+</script>

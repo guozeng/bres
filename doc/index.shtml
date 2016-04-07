@@ -1,0 +1,8 @@
+<!--#include virtual="/g/doc/inc/top.shtml"-->
+<h1 class="page-header">华南城网前端文档</h1>
+<p class="lead">所有包依赖 <code>base.css</code>，使用模块前，请引入：</p>
+<pre class="brush: html;">
+<link rel="stylesheet" href="//res.csc86.com/g/libs/css/base.css">
+</pre>
+
+<!--#include virtual="/g/doc/inc/bom.shtml"-->

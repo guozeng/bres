@@ -1,0 +1,39 @@
+<!--#include virtual="/g/doc/inc/top.shtml"-->
+
+<h1 class="page-header">ajaxpage分页模块</h1>
+<p class="lead">实例：</p>
+<div id="demo-ajaxpage"></div>
+<pre class="brush: js;">
+var ajaxpage = require('ajaxpage');
+
+// 第一种参数调用方式,即取默认配置
+ajaxpage('containerId', totalPage, function (options) {
+  console.log(options.currentPage);
+});
+
+// 第二种参数调用方式，即自定义配置
+ajaxpage({
+  containerId: '',
+  totalPage: 1000,
+  currentPage: 1,
+  btnNum: 7,          // 分页按钮个数，需大于5且为奇数，若为偶数，自动+1
+  prevText: "上一页",
+  nextText: "下一页",
+  theme: "classic",
+  noNextShow: true,   // 第一页和最后一页时是否显示上一页或下一页按钮
+  onPageChange: null
+});
+</pre>
+<p class="lead">方法原型：<code>ajaxpage(containerId | object [,totalPage, callback])</code></p>
+<p class="lead"><code>containerId</code> 为分页模块的html容器id值，也可以是<code>DOM element</code>或<code>jquery</code>对象。</p>
+<p class="lead">第一种的回调函数即是第二种的<code>onPageChange</code>方法，页数改变后调用。</p>
+<p class="lead"><code>theme</code>为样式主题名称，默认只提供一种，可以设置为<code>null</code>，完全自己定义样式。</p>
+
+<!--#include virtual="/g/doc/inc/bom.shtml"-->
+<script>
+	seajs.use('ajaxpage', function (m) {
+		m('demo-ajaxpage', 1000, function (obj) {
+			console.log(obj.currentPage);
+		});
+	});
+</script>

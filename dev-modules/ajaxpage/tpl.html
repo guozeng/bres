@@ -1,0 +1,48 @@
+<style>
+	.csc-ajaxpage a, .csc-ajaxpage span{float: left;}
+	.clear{clear:both;}
+	.csc-ajaxpage a.no-next{cursor: not-allowed;}
+	{{if theme === "classic"}}
+	<!-- style1 -->
+	.csc-ajaxpage a, .csc-ajaxpage span{padding: 10px 15px; border: 1px solid #ccc; margin-left: 3px;color:#333; text-decoration: none;}
+	.csc-ajaxpage a:first-child{margin-left: 0;}
+	.csc-ajaxpage a.hover{border: 1px solid #f00; text-decoration: none;}
+	.csc-ajaxpage a:hover{color:#f00; text-decoration: none;}
+	.csc-ajaxpage a.no-next{border: 1px solid #eee;color:#999;}
+	.csc-ajaxpage a.no-next:hover{border: 1px solid #eee;}
+	{{/if}}
+</style>
+
+<div class="csc-ajaxpage">
+	{{if page === 1}}
+		{{if noNextShow}}
+		<a href="javascript:;" title="prev" class="no-next">{{prevText}}</a>
+		{{/if}}
+	{{else}}
+		<a href="javascript:;" title="prev">{{prevText}}</a>
+	{{/if}}
+	
+	{{each structure as value index}}
+		{{if value === 'span'}}
+		<span>...</span>
+		{{else}}
+
+		{{if value === page}}
+		<a href="javascript:;" title="{{value}}" class="hover">{{value}}</a>
+		{{else}}
+		<a href="javascript:;" title="{{value}}">{{value}}</a>
+		{{/if}}
+
+		{{/if}}
+	{{/each}}
+
+	{{if page === totalPage}}
+		{{if noNextShow}}
+		<a href="javascript:;" title="next" class="no-next">{{nextText}}</a>
+		{{/if}}
+	{{else}}
+		<a href="javascript:;" title="next">{{nextText}}</a>
+	{{/if}}
+
+	<div class="clear"></div>
+</div>

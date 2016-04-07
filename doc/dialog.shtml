@@ -1,0 +1,118 @@
+<!--#include virtual="/g/doc/inc/top.shtml"-->
+
+<h1 class="page-header">dialog对话框模块</h1>
+<p class="lead">对话框模块基于<code>jquery.artDialog</code>的再次封装</p>
+<p class="lead">实例：</p>
+<button type="button" class="btn btn-primary" id="dialog-demo">点击弹出对话框</button>
+<pre class="brush: js;">
+var dialog = require('dialog');
+$('#dialog-demo').click(function(event) {
+  dialog({
+    content: '简单对话框'
+  });
+});
+</pre>
+<p><code>dialog(options)</code>配置说明：</p>
+<pre class="brush: js;">
+dialog({
+    // 消息内容，通常通过iframe引入单独一个网页
+  content: '<div class="aui_loading"><span>loading..</span></div>',
+  title: '\u6d88\u606f',    // 标题. 默认'消息'
+  button: null,       // 自定义按钮 
+  ok: null,         // 确定按钮回调函数
+  cancel: null,       // 取消按钮回调函数
+  init: null,         // 对话框初始化后执行的函数
+  close: null,        // 对话框关闭前执行的函数
+  okVal: '\u786E\u5B9A',    // 确定按钮文本. 默认'确定'
+  cancelVal: '\u53D6\u6D88',  // 取消按钮文本. 默认'取消'
+  width: 'auto',        // 内容宽度
+  height: 'auto',       // 内容高度
+  minWidth: 96,       // 最小宽度限制
+  minHeight: 32,        // 最小高度限制
+  padding: '20px 25px',   // 内容与边界填充距离
+  skin: '',         // 皮肤名(预留接口,尚未实现)
+  icon: null,         // 消息图标名称 
+                      // 对应 module-images\dialog\skins\icons目录下的图标名称（不带格式）
+  time: null,         // 自动关闭时间
+  esc: true,          // 是否支持Esc键关闭
+  focus: true,        // 是否支持对话框按钮自动聚焦
+  show: true,         // 初始化后是否显示对话框
+  follow: null,       // 跟随某元素(即让对话框在元素附近弹出)
+  path: _path,        // artDialog路径
+  lock: false,        // 是否锁屏，即遮罩
+  background: '#000',     // 遮罩颜色
+  opacity: .7,        // 遮罩透明度
+  duration: 300,        // 遮罩透明度渐变动画速度
+  fixed: false,       // 是否静止定位
+  left: '50%',        // X轴坐标
+  top: '38.2%',       // Y轴坐标
+  zIndex: 1987,       // 对话框叠加高度值(重要：此值不能超过浏览器最大限制)
+  resize: true,       // 是否允许用户调节尺寸
+  drag: true,         // 是否允许用户拖动位置
+  dbClickHide: true           // 双击关闭弹窗
+});
+</pre>
+<p>特别说明：自定义按钮的弹出框，<code>button</code>值可以是数组或单个对象</p>
+<button type="button" class="btn btn-primary" id="dialog-demo2">点击自定义按钮的弹出框</button>
+<pre class="brush: js;">
+var dialog = require('dialog');
+$('#dialog-demo2').click(function(event) {
+  dialog({
+    content: '自定义按钮的弹出框',
+    button: [{
+      name: '登录',
+      callback: function () {},
+      disabled: false,
+      focus: true
+    }]
+  });
+});
+</pre>
+<h2 id="dialog-genel">常用对话框</h2>
+<p class="lead">为方便调用，我们封装了6个常用对话框，其函数原型如下：</p>
+<p>提示消息框： <code>dialog.tip(msg, [,callback [, closeTime]])</code></p>
+<p>警告消息框： <code>dialog.alert(msg, [,callback])</code></p>
+<p>确认操作框： <code>dialog.confirm(msg, [,okCallback [,cancelCallback]])</code></p>
+<p>错误提示框： <code>dialog.error(msg, [,okCallback [,closeTime]])</code></p>
+<p>成功提示框： <code>dialog.error(msg, [,okCallback [,closeTime]])</code></p>
+<p>loading提示框</p>
+<button type="button" class="btn btn-primary" id="dialog-demo3">点击打开loading提示框</button>
+<pre class="brush: js;">
+var dialog = require('dialog');
+$('#dialog-demo3').click(function(event) {
+  var loading = dialog.loading('努力加载中，请稍后...');
+  setTimeout(function () {
+    loading.close();
+  }, 3000);
+});
+</pre>
+</div>
+
+<!--#include virtual="/g/doc/inc/bom.shtml"-->
+<script>
+	seajs.use('dialog', function(m) {
+		var dialog = m;
+		$('#dialog-demo').click(function(event) {
+			dialog({
+				content: '简单对话框'
+			});
+		});
+		$('#dialog-demo2').click(function(event) {
+			dialog({
+				content: '自定义按钮的弹出框',
+				button: [{
+					name: '登录',
+					callback: function () {},
+					disabled: false,
+					focus: true
+				}]
+			});
+		});
+		$('#dialog-demo3').click(function(event) {
+			var loading = dialog.loading('努力加载中，请稍后...');
+			setTimeout(function () {
+				loading.close();
+			}, 3000);
+		});
+	});
+</script>

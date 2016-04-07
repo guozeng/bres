@@ -1,0 +1,43 @@
+<style id="imgScrollorStyleId">
+  .imgScrollor{position: relative;}
+  .imgScrollorWrap{position: relative; overflow: hidden;}
+  .imgScrollor-ul{padding: 0; position: absolute; left: 0; top: 0;}
+  .imgScrollor-ul li{list-style: none; float: left;}
+  .imgScrollor-ul a, .imgScrollor-ul img{display: block;}
+
+  .imgScrollor-index{text-align: center; margin-top: 10px;}
+  .imgScrollor-index a{display: inline-block; width: 12px; height: 12px; background: #ccc;margin: 0 5px;}
+  .imgScrollor-index a.hover{background: #f00;}
+
+  .imgScrollor-sw-btn{position: absolute;cursor: pointer;}
+  .imgScrollor-sw-btn:hover{color: #000;}
+  .imgScrollor-sw-btn-default{font-size: 30px; color: #333;}
+  .imgScrollor-sw-btn-default:hover{color: #000;}
+
+  .imgScrollor-prev{left: 0;}
+  .imgScrollor-next{right: 0;}
+</style>
+<div class="imgScrollor" id="{{imgScrollorId}}">
+    <div class="imgScrollorWrap">
+      <ul class="imgScrollor-ul g-cf">
+        {{each imgList as v i}}
+        <li><a href="{{v.href}}" data-index="{{i}}" target="{{target}}"><img src="{{v.imgUrl}}"></a></li>
+        {{/each}}
+      </ul>
+    </div>
+    {{if scrollIndex}}
+    <div class="imgScrollor-index">
+      {{each indexArr as v i}}
+        {{if i === 0}}
+        <a href="javascript:;" class="hover"></a>
+        {{else}}
+        <a href="javascript:;"></a>
+        {{/if}}
+      {{/each}}
+    </div>
+    {{/if}}
+    {{if prevNext}}
+    <span class="imgScrollor-sw-btn imgScrollor-sw-btn-default imgScrollor-prev iconfont">&#xe602;</span>
+    <span class="imgScrollor-sw-btn imgScrollor-sw-btn-default imgScrollor-next iconfont">&#xe601;</span>
+    {{/if}}
+</div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="guozeng">
+  <title>华南城网前端文档</title>
+  <style>
+    html, body{height: 100%;}
+    *{box-sizing: content-box!important;}
+    /*ul, li{list-style: none;}*/
+    .left, .right{height: 100%; position: fixed; overflow: auto;}
+    .left{width: 240px; background: #333; color: #ccc;}
+    .right{top: 0; left: 240px; right: 0; bottom: 0;}
+    .lcontainer{padding: 20px 15px;}
+    .rcontainer{padding: 20px;}
+    .title{font-size: 26px;margin-top: 0;}
+    .title a{color:#ccc; text-decoration: none;}
+    .title a:hover{color:#fff; text-decoration: none;}
+    .leftnav{padding: 0;}
+    .leftnav li{padding: 5px 0; list-style: none;}
+    .leftnav a{color:#ccc; font-size: 18px; text-decoration: none;}
+    .leftnav a:hover{color:#fff; text-decoration: none;}
+    .zhdesc{font-size: 12px; margin-left: 5px;}
+    .page-header{margin-top: 0!important;}
+    .author{position: absolute; right: 30px; top: 10px; color:#999;}
+  </style>
+  <!-- Bootstrap core CSS -->
+  <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Optional Bootstrap Theme -->
+  <link href="data:text/css;charset=utf-8," data-href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" id="bs-theme-stylesheet">
+  <link href="assets/css/patch.css" rel="stylesheet">
+  <!-- Documentation extras -->
+  <link href="assets/css/docs.min.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="../libs/css/base.css">
+  <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="assets/js/ie-emulation-modes-warning.js"></script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <!-- 代码高亮 -->
+  <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.js"></script>
+  <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushJScript.js"></script>
+  <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushXml.js"></script>
+  <script type="text/javascript" src="syntaxhighlighter/scripts/shBrushCss.js"></script>
+  <link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.css"/>
+  <script type="text/javascript">
+    SyntaxHighlighter.all();
+  </script>
+  <script src="../libs/vue/vue.min.js"></script>
+  <!--#include virtual="config.shtml"-->
+</head>
+<body>
+  <div class="author" id="author">
+    <span>author:</span><span>{{author}}</span>
+    <span>date:</span><span>{{date}}</span>
+  </div>
+  <div class="left">
+    <div class="lcontainer">
+      <h1 class="title"><a href="./">华南城网前端文档</a></h1>
+      <ul class="leftnav" id="leftnav">
+        <li v-for="item in items">
+          <a href="{{item.filename}}.shtml{{debug}}" date="{{item.date}}" author="{{item.author}}">{{item.filename}}</a><span class="zhdesc">{{item.desc}}</span>
+        </li>
+      </ul>
+      <script>
+        new Vue({
+          el: '#leftnav',
+          data: {
+            items: compounts,
+            debug: debug ? '?cscdev' : ''
+          }
+        });
+        // 作者和日期显示
+        var reg = /\/(\w+).shtml/i;
+        var m = location.href.match(reg);
+        var fname = !!m ? m[1] : 'index';
+        var obj = {};
+        for (var i = 0, len = compounts.length; i < len; i++) {
+          if (compounts[i].filename === fname) {
+            obj = compounts[i];
+            break;
+          }
+        }
+        new Vue({
+          el: '#author',
+          data: {
+            author: obj.author || '郭增',
+            date: obj.date || '2016-01-01'
+          }
+        });
+      </script>
+    </div>
+  </div>
+  <div class="right">
+    <div class="rcontainer">
